@@ -8,7 +8,7 @@ from data.data_tools import data_build, data_export
 
 class Pazaak(object):
 	def __init__(self):
-		self.p = {'type':'computer', 'name':'T3M4', 'phrase': opponent_list[4]['phrase'],'record':{'win':0, 'loss':0},'gs':0,'rs':0,'deck':[],'hand':[-3,-1,1,2], 'state':'none', 'main': 'yes', 'paradigm': 'new'}
+		self.p = {'type':'human', 'name':'T3M4', 'phrase': opponent_list[4]['phrase'],'record':{'win':0, 'loss':0},'gs':0,'rs':0,'deck':[],'hand':[-3,-1,1,2], 'state':'none', 'main': 'yes', 'paradigm': 'new'}
 		self.c = {'type':'computer', 'name':opponent_list[4]['name'],'phrase': opponent_list[4]['phrase'],'gs':0,'rs':0,'deck':[],'hand':[-3,-1,1,2], 'state':'none', 'main': 'no', 'paradigm': 'old'}
 		self.data = {'date': None, 'time': None, 'game_count':0, 'run count':0, 'win':{'p1':0, 'p2':0}, 'stay':{'p1':{}, 'p2':{}}, 'play':{'p1':{}, 'p2':{}}}
 		self.options = {'speed':1, 'debug':False, 'data': True}
