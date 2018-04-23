@@ -1,0 +1,11 @@
+*******************************************************************************************************************************
+
+Overview: Pazaak is a game like blackjack in which two players attempt to reach, but not exceed, a score of 20 points. After flipping for the lead, each player draws their hand of four cards. The cards range from plus cards to minus cards, flippable plus/ minus cards which modify the score accordingly. They then draw from a deck of cards which can only add to their score. Whoever scores closest to 20 without going bust wins the round. Once a player reaches 20, they stay, and will not draw again until the next round. If a player goes over, they may play down to save their score. At the end of a turn, the player may choose to stay.
+
+Hand Cards: Playable cards consist of minus 6 to plus 6 and plus/minus 1 to plus/minus 6. The minus cards lower the score and the plus cards raise it. The plus/minus cards simply allow the player to choose between playing a plus or a minus at a time (#not yet implemented). Players get four cards per game, and the cards do not renew each round. They may each play one card per turn.
+
+Deck Cards: Deck cards are played each turn at the beginning of the turn. They only increase the score. There are four of each card in the range 1 to 10.
+
+Ending a Round: There are three ways to end the round. 1) One player stays with a higher score than the other. 2) One player goes over 20 and cannot/ does not play down to save their score. 3) If a player has 9 cards on their side of the board and has not exceeded 19 points, they automatically win (#not yet implemented).
+
+*******************************************************************************************************************************
