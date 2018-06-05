@@ -1,0 +1,8 @@
+V. 1.1 - 6/3/2018 - 6/4/2018
+    -Aligned with PEP8
+    -Made a minor modification to the opponent phrase words
+    -Removed unused function from data_tools.py file
+    -Changed the way tuples are unpacked in the choose_opponent function in opponents.py by putting each side into parentheses.
+    -Addressed readability issues related to input prompts
+    -Cleared excess shuffles in cards.py
+    -Explained default hand value when prompted for hand selection.
