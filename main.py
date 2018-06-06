@@ -21,6 +21,8 @@ several NPC personalities
 
 4) Re-write rules to break down the core concepts in the game a little more concisely.
 
+5) Re-enable data tools to be turned off.
+
 5) For "elif choice == 6" on opponents.py, change this to a function to randomly select two different numbers and return the results, that way it is cleaner.
 
 4) Improve comp behavior by programming multiple paradigms and allowing a

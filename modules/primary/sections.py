@@ -19,14 +19,17 @@ def loop(pid, cid, data, options):
     # baselines game score attributes and game count for the new game
     p1['hand'], p2['hand'] = hand_reset(p1, options), hand_reset(p2, options)
     # resets hands to either default or player choice (random for computer)
-    data['win']['p1'], data['stay']['p1']['g{}'.format(data['game_count'])],
-    data['play']['p1']['g{}'.format(data['game_count'])] = reset(
-            'data', options
-            )
-    data['win']['p2'], data['stay']['p2']['g{}'.format(data['game_count'])],
-    data['play']['p2']['g{}'.format(data['game_count'])] = reset(
-            'data', options
-            )
+    data['win']['p1'], data['stay']['p1']['g{}'.format(
+            data['game_count']
+        )], data['play']['p1']['g{}'.format(
+            data['game_count']
+        )] = reset('data', options)
+
+    data['win']['p2'], data['stay']['p2']['g{}'.format(
+            data['game_count']
+        )], data['play']['p2']['g{}'.format(
+            data['game_count']
+        )] = reset('data', options)
 
     while not game_check(p1, p2):
         # while neither has a score of 3
