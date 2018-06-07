@@ -51,7 +51,7 @@ def state_check(ply, options):
     elif ply['rs'] == 20:
         return 'stay'  # at 20 stays
     else:
-        return 'none'
+        return None
 
 
 def stay_draw_check(pid, cid, options):
@@ -107,7 +107,7 @@ def p_stay_check():
     if choice.capitalize() == 'Y':
         return 'stay'
     else:
-        return 'none'
+        return None
 
 
 def stay_check(ply, opp, options):

@@ -44,10 +44,10 @@ def coin_flip(pid, cid, options):
 
 def order_set(p1, p2):
     '''
-    sorts the players in order for a return to their order for the game's end
+    sorts the players into their original order for the game's end
     '''
 
-    if p1['main'] == 'yes':
+    if p1['main']:
         return p1, p2
     else:
         return p2, p1
@@ -96,7 +96,7 @@ def state_reset(options):
 
     sleep(options['speed']/2)
     print("*Console: States have been reset")
-    return 'none', 'none'
+    return None, None
 
 
 def record_set(pid, winner):

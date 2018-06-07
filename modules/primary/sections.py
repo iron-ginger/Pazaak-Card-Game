@@ -46,7 +46,7 @@ def loop(pid, cid, data, options):
             turn_count = count_set(turn_count, 'turn', options)
             # increments current turn count
 
-            if p1['state'] == 'none':
+            if p1['state'] is None:
                 p1, p2, end_round, data = rounds(p1, p2, data, options)
             # p1 turn
             else:
@@ -55,7 +55,7 @@ def loop(pid, cid, data, options):
                 phrases(p1, p2, 'lose round', 'win round')
                 break
 
-            if p2['state'] == 'none':
+            if p2['state'] is None:
                 p2, p1, end_round, data = rounds(p2, p1, data, options)
             # p2 turn
             else:
@@ -119,7 +119,7 @@ def turns(ply, opp, data, options):
     of the current turn's player. The pid is for the player when the computer
     is making decisions, which are based on both players' stats'''
     
-    if ply['state'] == 'none':
+    if ply['state'] is None:
         ply['deck'], ply['rs'] = deck_phase(ply, options)
         # draw part
         ply['state'] = state_check(ply, options)
@@ -141,7 +141,7 @@ def turns(ply, opp, data, options):
 
         ply['state'] = state_check(ply, options)
         # updates state attribute
-        if ply['state'] == 'none':
+        if ply['state'] is None:
             ply['state'] = stay_check(ply, opp, options)
             # and allow for a stay at end of turn
             data = data_gather_stay(ply, data)

@@ -9,7 +9,7 @@ from data.data_tools import data_build, data_export
 class Pazaak(object):
     def __init__(self):
         self.p = {
-            'type': 'human',
+            'type': 'computer',
             'name': 'T3M4',
             'phrase': opponent_list[4]['phrase'],
             'record': {'win': 0, 'loss': 0},
@@ -17,10 +17,11 @@ class Pazaak(object):
             'rs': 0,
             'deck': [],
             'hand': [-3, -1, 1, 2],
-            'state': 'none',
-            'main': 'yes',
+            'state': None,
+            'main': True,
             'paradigm': 'new'
             }
+
         self.c = {
             'type': 'computer',
             'name': opponent_list[4]['name'],
@@ -29,22 +30,23 @@ class Pazaak(object):
             'rs': 0,
             'deck': [],
             'hand': [-3, -1, 1, 2],
-            'state': 'none',
-            'main': 'no',
+            'state': None,
+            'main': False,
             'paradigm': 'old'
             }
+
         self.data = {
             'date': None,
-            'time': None,
             'game_count': 0,
             'run count': 0,
             'win': {'p1': 0, 'p2': 0},
             'stay': {'p1': {}, 'p2': {}},
             'play': {'p1': {}, 'p2': {}}
-         }
+            }
+
         self.options = {
-            'speed': 1,
-            'debug': False,
+            'speed': 0,
+            'debug': True,
             'data': True
             }
 
@@ -71,7 +73,15 @@ class Pazaak(object):
                         )
 
                     if self.options['data']:
-                        data_export(data_build(self.p, self.c, self.data))
+                        data_export(
+                            data_build(
+                                self.p, self.data
+                                ), 
+                            data_build(
+                                self.c, self.data
+                                )
+                            )
+
                         print(
                             "\nGame Count: {}\n\n".format(
                                 self.data['game_count']

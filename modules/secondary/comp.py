@@ -112,9 +112,9 @@ def c_hand_phase(cid, opp, data, options):
     sleep(options['speed']/2)
 
     if cid['rs'] > 14:
-        if cid['main'] == 'yes':
+        if cid['main']:
             card = choice_mod_n(cid, opp, options)
-        elif cid['main'] == 'no':
+        elif not cid['main']:
             card = choice_mod_o(cid, opp, options)
 
         if card:

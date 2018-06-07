@@ -2,38 +2,43 @@ from csv import DictWriter, QUOTE_MINIMAL
 from datetime import date
 
 
-def data_build(pid, cid, data):
-    '''packages the data from played games in this iteration into a format
-see pep 257 on docstrings
-    for export to a .csv file
-    #1) player type, 3) length of player's hand
-    # at end of game, # 4) win count 5) stay count,
-    # 6) play count
-    '''
+def data_build(pid, data):
+    '''packages the data for a player in this iteration into a format for export to a .csv file
+
+    1) player type, 3) length of player's hand
+    at end of game ,4) win count 5) stay count,
+    6) play count'''
+
+    if pid['main']:
+        player_number = 'p1'
+    elif not pid['main']:
+        player_number = 'p2'
 
     return {
-        'date': date.today(),
-        '1 paradigm': pid['paradigm'],
-        '1 win': data['win']['p1'],
-        '1 stay': data['stay']['p1']['g{}'.format(data['game_count'])],
-        '1 play': data['play']['p1']['g{}'.format(data['game_count'])],
-        '2 paradigm': cid['paradigm'],
-        '2 win': data['win']['p2'],
-        '2 stay': data['stay']['p2']['g{}'.format(data['game_count'])],
-        '2 play': data['play']['p2']['g{}'.format(data['game_count'])]}
+        'Date': date.today(),
+        'Game Number': data['game_count'],
+        'Player Paradigm': pid['paradigm'],
+        'Player Win Count': data['win'][player_number],
+        'Player Stay Count': data['stay'][player_number]['g{}'.format(data['game_count'])],
+        'Player Play Count': data['play'][player_number]['g{}'.format(data['game_count'])]
+        }
 
 
-def data_export(data):
+def data_export(p1data, p2data):
     '''https://stackoverflow.com/questions/42977363/python-csv-header-ignore-while-keep-appending-data-to-csv-file/42978214
     '''
 
     with open('data/game_data.csv', 'a', newline='') as csvfile:
         # open game_data.csv in append mode
         fieldnames = [
-            'date', '1 paradigm', '1 win',
-            '1 stay', '1 play', '2 paradigm',
-            '2 win', '2 stay', '2 play'
+            'Date',
+            'Game Number',
+            'Player Paradigm',
+            'Player Win Count',
+            'Player Stay Count',
+            'Player Play Count'
             ]
+
         # establishes header names
         writer = DictWriter(
             csvfile, fieldnames=fieldnames,
@@ -44,7 +49,8 @@ def data_export(data):
         if csvfile.tell() == 0:  # if it is empty:
             writer.writeheader()  # writes the header
 
-        writer.writerow(data)  # writes
+        writer.writerow(p1data)  # writes
+        writer.writerow(p2data)
 
 
 def data_gather_win(p1, winner, data):
@@ -74,10 +80,10 @@ def data_gather_stay(ply, data):
     '''
 
     if ply['state'] == 'stay':
-        if ply['main'] == 'yes':
+        if ply['main']:
             data['stay']['p1']['g{}'.format(data['game_count'])] += 1
 
-        elif ply['main'] == 'no':
+        elif not ply['main']:
             data['stay']['p2']['g{}'.format(data['game_count'])] += 1
 
     return data
@@ -90,10 +96,10 @@ def data_gather_play(ply, data):
     It is run in the same function as the comp's hand function, so if the
     player plays at that time, it triggers.
     '''
-    if ply['main'] == 'yes':
+    if ply['main']:
         data['play']['p1']['g{}'.format(data['game_count'])] += 1
 
-    elif ply['main'] == 'no':
+    elif not ply['main']:
         data['play']['p2']['g{}'.format(data['game_count'])] += 1
 
     return data

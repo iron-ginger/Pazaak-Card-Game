@@ -123,8 +123,8 @@ def choose_opponent(p1, p2):
             choice = int(
                 input(
                     "Enter your pick using the appropriate numerical key."
-                    "The first four options are one human vs the selected"
-                    "computer player: "
+                    " The first four options are one human vs the selected"
+                    " computer player: "
                     )
                 )
             if choice in opponent_list.keys():
