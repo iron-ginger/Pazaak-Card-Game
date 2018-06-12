@@ -1,4 +1,48 @@
+****************Change Pipeline************************
+
+1) For further PEP8:
+    -Redo and write docstrings for ALL functions
+    -If a function argument's name clashes with a reserved keyword, it is generally better to append a single trailing underscore rather than use an abbreviation or spelling corruption
+
+2) Create a reusable DRY function for the debug lines scattered throughout the code which take in the player objects and then run the appropriate debug functions as needed, rather than having a clunky check at the end of various parts. You do that with Data, so do it with Debug too.
+
+3) Allow the sleep speed modifier to be modified with the settings as well, ex sleep[speed]/2 should just be sleep[speed] which takes into account that modifier when it is set. Also, reverse the speed settings order to actually be intuitive
+
+4) Re-write rules to break down the core concepts in the game a little more concisely.
+
+7) Improve comp behavior by programming multiple paradigms and allowing a
+switch between them. I expect to see the computer players become more
+difficult to beat by tweaking the chances to stay and play to create the
+ideal weights for logical decision-makng.
+
+8) Create the +1 -1 and tiebreaker cards
+
+9) Create option for random comp opponent mode and maybe tournament mode with a persistent trophy option written to a DB with SQL
+
+
+**********************************************************
+**********************************************************
+
+V. 1.1.1 - General Mod 1 (W.I.P.)
+  6.11.2018
+    - Modified names of the pazaak.py game method and sections.py loop to be more informative. Now, game is play, and loop is game.
+    - Modified names of player and opponent within functions to be player and opponent, not ply and opp or pid and cid.
+    - Modified Swap_order function to eliminate redundancy
+    -Wrote function docstrings (except comp.py, options.py and opponents.py)
+
+  6.9.2018
+    - Changed the self.p and self.c init calls to be self.player_1 and self.player_2. Presently, self.player_1 will still be the only player to get a record attribute.
+  
+  6.6.2018
+    - Changed how data is exported, which is now written in multiple lines, one for each player, two per game.
+    - Changed the player/ computer player's 'main' attribute to be a True/ False switch, instead of a string, and modified internal calls to it as appropriate.
+    - Changed state to normalize to None instead of a string variable.
+
+
+**********************************************************
+
 V. 1.1.0.5 - Breakfix for sections.py file
+    - Changed the format of the loop function's data call to reset, which broke the game when it was changed.
 
 
 **********************************************************

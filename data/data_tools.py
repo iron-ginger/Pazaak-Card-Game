@@ -60,10 +60,10 @@ def data_gather_win(p1, winner, data):
     '''
 
     if winner == p1['name']:
-        # if winner is the self.p on pazaak.py...
+        # if winner is self.player_1...
         data['win']['p1'] = 1
     else:
-        # otherwise the second player's data gets the win
+        # otherwise self.player_2's data gets the win
         data['win']['p2'] = 1
 
     return data

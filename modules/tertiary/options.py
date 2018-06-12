@@ -2,9 +2,9 @@ from time import sleep
 
 
 def change_speed(options):
-    '''
+    """
 
-    '''
+    """
 
     while True:
         try:
@@ -28,17 +28,17 @@ def change_speed(options):
 
 
 def rules():
-    '''
+    """
 
-    '''
+    """
     with open("reads/rules.txt", 'r') as rulebook:
         print("\n{}\n\n".format(rulebook.read()))
 
 
 def debug(options):
-    '''
+    """
 
-    '''
+    """
     while True:
         try:
             choice = input(
@@ -62,12 +62,12 @@ def debug(options):
             print("Invalid Input")
 
 
-def run_amount(p1, p2):
-    '''
+def run_amount(player_1, player_2):
+    """
 
-    '''
+    """
 
-    if p1['type'] == 'computer' and p2['type'] == 'computer':
+    if player_1['type'] == 'computer' and player_2['type'] == 'computer':
         while True:
             try:
                 return int(
@@ -82,9 +82,9 @@ def run_amount(p1, p2):
 
 
 def data_switch():
-    '''
+    """
 
-    '''
+    """
 
     choice = input("Do you want to enable data tools? Enter y or n: ")
     if choice.capitalize() == 'Y':

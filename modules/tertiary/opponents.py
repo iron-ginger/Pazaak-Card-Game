@@ -184,18 +184,22 @@ def choose_opponent(p1, p2):
     return p1, p2
 
 
-def phrases(cid, opp, arg1, arg2):
-    '''
-    this takes in the args for each player, as well as the players themselves
-    '''
+def phrases(computer, opponent, arg1, arg2):
+    """Prints appropriate phrase based on args passed and computer personality
 
-    if cid["type"] == "computer":
-        print("{}: {}".format(cid["name"], cid["phrase"][arg1]))
+    Input: Two player attributes and two string args.
+    Output: None
 
-    if opp["type"] == "computer":
-        print("{}: {}".format(opp["name"], opp["phrase"][arg2]))
+    Prints for each player depending on if they are a computer or not.
+    """
+
+    if computer["type"] == "computer":
+        print("{}: {}".format(computer["name"], computer["phrase"][arg1]))
+
+    if opponent["type"] == "computer":
+        print("{}: {}".format(opponent["name"], opponent["phrase"][arg2]))
 
 
-def play_phrase(cid):
-    if cid["type"] == "computer":
-        print("{}: {}".format(cid["name"], cid["phrase"]["play"]))
+def play_phrase(computer):
+    if computer["type"] == "computer":
+        print("{}: {}".format(computer["name"], computer["phrase"]["play"]))

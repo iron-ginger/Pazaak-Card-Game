@@ -3,61 +3,58 @@ from time import sleep
 
 
 def switch_order(p1, p2, scores):
-    '''
-    takes in both players' data and the original scores they had at the
+    """Swaps order of players depending on who won. 'Loser takes it out.'
 
-    beginning of the round. Whoever didn't score that round is returned
-    as p1, with the winner as p2.'''
+    Order Summary: Check player scores versus scores set at beginning of
+    the round.
 
-    if p1['gs'] != scores[0]:
-        # if p1's score has changed from the start of the round
-        return p2, p1
-        # p2 plays first next round
-    elif p2['gs'] != scores[1]:
-        # alternatively, if p2's score changed from the start of the round
+    Inputs: player 1 and 2 attributes and scores previously noted
+    Outputs: player attributes"""
+
+    if p2['gs'] != scores[1]:
         return p1, p2
         # p1 plays first next round
     else:
+        # if p1's score has changed from the start of the round
+        #or if nobody won, reverse the order
         return p2, p1
-        # if nobody won (draw game), reverse the order
+        # p2 plays first next round
 
 
-def coin_flip(pid, cid, options):
-    '''
-    sets the order for each player to play dependent upon a random coin
-
-    toss takes in the two players' attributes, converting them into the proper
-    order (coin_flip). From here until someone wins, the two players are
-    referred to as p1 and p2, respectively. This way, they can play in a
-    random order.'''
+def coin_flip(player, opponent, options):
+    """Sets play order with a coin toss"""
 
     print("\nFlipping for who plays first...")
     sleep(options['speed']/2)
 
     if randint(0, 1) == 1:
-        print("{} goes first!".format(pid['name']))
-        return pid, cid
+        print("{} goes first!".format(player['name']))
+        return player, opponent
     else:
-        print("{} goes first!".format(cid['name']))
-        return cid, pid
+        print("{} goes first!".format(opponent['name']))
+        return opponent, player
 
 
-def order_set(p1, p2):
-    '''
-    sorts the players into their original order for the game's end
-    '''
+def order_set(player_1, player_2):
+    """sorts the players into their original order for the game's end"""
 
-    if p1['main']:
-        return p1, p2
+    if player_1['main']:
+        return player_1, player_2
     else:
-        return p2, p1
+        return player_2, player_1
 
 
 def reset(arg, options):
-    '''
-    baseline scores and counter, printing which has been reset based on
+    """baseline scores and counter based on the arg presented
 
-    the arg and, if it is a round arg, also resets the end_round test'''
+    Inputs: string arg, options attributes
+    Outputs: three zeros, boolean.
+
+    arg = 'round': resets the end_round counter as well with the boolean
+    arg = 'game' or 'data' resets the three counts.
+
+    Prints based on arg presented
+    """
 
     sleep(options['speed']/2)
     count = 0
@@ -75,10 +72,7 @@ def reset(arg, options):
 
 
 def count_set(count, level, options):
-    '''
-    increments the count, printing the appropriate statement based on the
-
-    level passed as a parameter'''
+    """increments the count and prints the appropriate statement"""
 
     count += 1
     sleep(options['speed']/2)
@@ -92,21 +86,19 @@ def count_set(count, level, options):
 
 
 def state_reset(options):
-    ''''resets the game state for each player'''
+    """'resets the game state for each player"""
 
     sleep(options['speed']/2)
     print("*Console: States have been reset")
     return None, None
 
 
-def record_set(pid, winner):
-    '''
-    sets the player's win/ loss record based on the passed name of the winner
-    '''
+def record_set(player, winner):
+    """sets the player's win/ loss record if they won"""
 
-    if winner == pid['name']:
-        pid['record']['win'] += 1
+    if winner == player['name']:
+        player['record']['win'] += 1
     else:
-        pid['record']['loss'] += 1
+        player['record']['loss'] += 1
 
-    return pid
+    return player

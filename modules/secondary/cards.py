@@ -5,24 +5,26 @@ from time import sleep
 from random import shuffle
 
 
-def hand_reset(ply, options):
-    '''
-    lets player pick a hand, go with the default, and runs computer's hand
+def hand_reset(player, options):
+    """Checks if player is human and returns appropriate pick-hand function"""
 
-    selection'''
-
-    if ply['type'] == 'human':
+    if player['type'] == 'human':
         return p_hand(options)
-    elif ply['type'] == 'computer':
+    elif player['type'] == 'computer':
         return c_hand()
 
 
 def p_hand(options):
-    '''
-    player inputs which cards to choose for their hand based on
+    """
+    Player picks hand from listed side-deck cards.
 
-    available cards in side deck
-    '''
+    Order Summary: Enter loop. Choice to pick hand or not. 1) Choice is
+    'Y': for loop to select cards from side-deck. 2) Choice is rules: run
+    rules function. 3) Else: hand is -3, -1, 1, 2. Return.
+
+    Inputs: options attributes.
+    Outputs: selected hand.
+    """
 
     while True:
         choice = input(
@@ -65,35 +67,41 @@ def p_hand(options):
     return hand
 
 
-def deck_phase(ply, options):
-    '''
-    '''
+def deck_phase(player, options):
+    """
+    Player draws cards from deck.
 
-    if len(ply['deck']) == 0:
-        ply['deck'] = list(range(1, 11)) * 4
-        shuffle(ply['deck'])
+    Order Summary: Check length of deck. If 0, rebuild. Draw card, apply score, discard. Return.
 
-    card = ply['deck'][len(ply['deck'])-1]  # draws card
-    ply['rs'] += card  # applies score
-    ply['deck'].pop(len(ply['deck'])-1)  # discards
+    Inputs: player and options attributes.
+    Outputs: player attributes for deck and round score.
+    """
+
+    if len(player['deck']) == 0:
+        player['deck'] = list(range(1, 11)) * 4
+        shuffle(player['deck'])
+
+    card = player['deck'][len(player['deck'])-1]  # draws card
+    player['rs'] += card  # applies score
+    player['deck'].pop(len(player['deck'])-1)  # discards
 
     print(
         "Draw: {}; {}'s score is now {}".format(
-            card, ply['name'], ply['rs']
+            card, player['name'], player['rs']
             )
         )
     sleep(options['speed'])
 
-    return ply['deck'], ply['rs']  # returns the modified deck and round score
+    return player['deck'], player['rs']  # returns the modified deck and round score
 
 
 def hand_phase(pid, data, options):
-    '''
+    """
     allows the human player to select a card from their hand to play. This
 
     function modifies the hand based on the chosen card, if it is available for
     selection, then returns the modified score and hand, minus the played card.
-    '''
+    """
 
     print(
         "---{}'s Hand---\n {}".format(pid['name'], pid['hand'])
